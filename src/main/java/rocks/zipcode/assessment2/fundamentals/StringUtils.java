@@ -68,11 +68,7 @@ public class StringUtils {
      */
     public static Boolean isSpecialCharacterString(String string) {
 
-        string = string.replace(" ", "");
-
-        if (string.matches("[^A-Za-z0-9]"))
-            return true;
-        else
-            return false;
+        //string = string.replace(" ", "");
+        return string.matches("^[-/@#$%^&_+=()*!]+");
     }
 }

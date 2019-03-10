@@ -26,13 +26,18 @@ public class MonthConversion {
      * @return the name of the respective month
      */
     public String getName(Integer monthNumber) {
+        boolean found = false;
         String returnValue ="";
         for(Map.Entry<Integer,String> entry : track.entrySet()) {
             Integer key = entry.getKey();
             String value = entry.getValue();
-            if(key==monthNumber)
+            if(key==monthNumber) {
+                found = true;
                 returnValue = value;
+            }
         }
+        if(found == false)
+            returnValue=null;
         return returnValue;
     }
 
@@ -40,8 +45,20 @@ public class MonthConversion {
      * @param monthName - name of month
      * @return - the ordinal of the month in the year
      */
-    public int getNumber(String monthName) {
-        return 1;
+    public Integer getNumber(String monthName) {
+        boolean found = false;
+        Integer returnValue =0;
+        for(Map.Entry<Integer,String> entry : track.entrySet()) {
+            Integer key = entry.getKey();
+            String value = entry.getValue();
+            if(value.equals(monthName)) {
+                found = true;
+                returnValue = key;
+            }
+        }
+        if(found == false)
+            returnValue=null;
+        return returnValue;
     }
 
     /**
@@ -49,7 +66,15 @@ public class MonthConversion {
      * @return true if the monthNumber is in the keySet
      */
     public Boolean isValidNumber(Integer monthNumber) {
-        return null;
+        boolean found = false;
+        for(Map.Entry<Integer,String> entry : track.entrySet()) {
+            Integer key = entry.getKey();
+            String value = entry.getValue();
+            if(key==monthNumber) {
+                found = true;
+            }
+        }
+        return found;
     }
 
     /**
@@ -57,7 +82,16 @@ public class MonthConversion {
      * @return true if the monthName is in the valueSet
      */
     public Boolean isValidMonth(String monthName) {
-        return null;
+        boolean found = false;
+
+        for(Map.Entry<Integer,String> entry : track.entrySet()) {
+            Integer key = entry.getKey();
+            String value = entry.getValue();
+            if(value.equals(monthName)) {
+                found = true;
+            }
+        }
+        return found;
     }
 
     /**
@@ -73,6 +107,15 @@ public class MonthConversion {
      * @param monthName - name of month
      */
     public void update(Integer monthNumber, String monthName) {
-
+        boolean found = false;
+        String returnValue ="";
+        for(Map.Entry<Integer,String> entry : track.entrySet()) {
+            Integer key = entry.getKey();
+            String value = entry.getValue();
+            if(key==monthNumber) {
+                found = true;
+                track.put(monthNumber,monthName);
+            }
+        }
     }
 }
